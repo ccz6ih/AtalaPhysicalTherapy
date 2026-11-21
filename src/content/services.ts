@@ -257,7 +257,7 @@ export const services: Service[] = [
       "When working with athletes of all ages and levels, we effectively apply our knowledge of evidence-based Physical Therapy with manual techniques to rehab sports injuries.",
     cardText:
       "Surfers, runners, golfers, lifters and weekend warriors. Sport-specific rehab, return-to-play progressions and performance training to keep you in the game.",
-    hero: { src: `${U}/2023/03/Depositphotos_189860708_XL-scaled.jpg`, alt: "Athlete working with a physical therapist on return to sport", w: 1600, h: 2400 },
+    hero: { src: `${U}/2026/11/physical-therapist-assessing-shoulder-blades.jpg`, alt: "Physical therapist assessing an athlete's shoulder blades in the clinic gym", w: 2400, h: 1600 },
     taglines: ["Peak Performance Starts Here", "Move Better", "Play Harder", "Your Recovery. Your Goals. Our Expertise", "Carlsbad Trusted Physical Therapy"],
     sections: [
       {
@@ -407,7 +407,7 @@ export const services: Service[] = [
       },
       {
         heading: "How Atala Does Physical Therapy for Industrial Medicine / Workers' Compensation",
-        image: { src: `${U}/2023/01/AdobeStock_64426273-scaled.jpeg`, alt: "Office workers dressed as superheroes", w: 2400, h: 1668 },
+        image: { src: `${U}/2026/11/physical-therapist-resistance-band-shoulder-exercise.jpg`, alt: "Physical therapist guiding a patient through a resistance band exercise", w: 2400, h: 1600 },
         blocks: [
           { p: "Our team of expert therapists are like the superheroes of industrial medicine, ready to save the day with their superpowers of manual therapy, exercise, and education. We'll work with you to develop a personalized treatment plan that addresses your specific needs, and helps you recover quickly." },
           { p: "And let's face it, getting injured on the job can be a real drag. But at Atala, we like to make the best of a bad situation. That's why we offer a \"Willy Wonka's Chocolate Factory\" of modalities, including ultrasound, and electrical stimulation. We want to make sure your therapy experience is as sweet as possible!" },

@@ -40,7 +40,7 @@ export const activities: Activity[] = [
       "Surfer's shoulder, low back pain from paddling, stiff pop-ups. One-on-one physical therapy for Carlsbad surfers that gets you back in the lineup and keeps you there.",
     answer:
       "Most surfing injuries don't come from wipeouts. They build up from paddling: hours of shoulder rotation and arched-back posture that the body isn't strong enough to repeat. We treat the injury, then build the shoulder, upper back and hips you need to paddle out, pop up and surf more sessions without the ache.",
-    hero: { src: `${U}/2025/02/happy-male-surfer-enjoying-summer-vacations-at-malibu-beach-in-sunny-california.jpg`, alt: "Surfer walking up the beach with his board at sunset" },
+    hero: { src: `${U}/2026/11/surfer-shoulder-pain-carlsbad-beach.jpg`, alt: "Surfer in a rash guard holding his sore shoulder at the beach" },
     local: {
       heading: "From Tamarack to Ponto",
       text: "Carlsbad's breaks reward a lot of paddling. Long walks along the sand, rip currents to cross and winter swells that mean long hold-downs. We build your rehab around the sessions you actually surf.",
@@ -112,7 +112,7 @@ export const activities: Activity[] = [
       "Low back pain, golfer's elbow, stiff hips and a shrinking backswing. One-on-one physical therapy for Carlsbad golfers who want to play pain-free and hit it further.",
     answer:
       "The lower back is the most commonly injured area in golfers at every level. The swing asks the spine to rotate fast and hard, and when the hips and upper back are stiff, the low back takes up the slack. We treat the pain, then restore the hip and trunk rotation and strength that let you swing freely.",
-    hero: { src: `${U}/2025/02/AdobeStock_451456830.jpeg`, alt: "Rainbow over a Carlsbad lagoon and the coast highway" },
+    hero: { src: `${U}/2026/11/golfer-low-back-pain-on-course.jpg`, alt: "Golfer holding his lower back on the course" },
     local: {
       heading: "From Aviara to La Costa",
       text: "Carlsbad has some of the best golf in Southern California, a short drive from our clinic. Rounds here are long and hilly, and the weather means you can play all year. That's great for your game, and hard on a back that isn't ready for it.",
@@ -122,7 +122,7 @@ export const activities: Activity[] = [
         { name: "The Crossings", note: "Canyon holes and big elevation changes" },
         { name: "Practice range", note: "Long range sessions are a common trigger for back and elbow pain" },
       ],
-      image: { src: `${U}/2025/02/AdobeStock_101776449.jpeg`, alt: "Sandy trail beside a Carlsbad lagoon" },
+      image: { src: `${U}/2025/02/AdobeStock_451456830.jpeg`, alt: "Rainbow over a Carlsbad lagoon and the coast highway" },
     },
     stat: {
       figure: "#1",
@@ -184,7 +184,7 @@ export const activities: Activity[] = [
       "Runner's knee, Achilles pain, plantar fasciitis and shin splints. One-on-one physical therapy for Carlsbad runners, from the seawall to the Carlsbad 5000 start line.",
     answer:
       "Most running injuries come from doing a bit too much, too soon, rather than from bad luck or bad form. We find which tissue is complaining, keep you running at a level it can handle, and build the strength that lets you add miles, speed and races without breaking down.",
-    hero: { src: `${U}/2025/02/AdobeStock_512646600.jpeg`, alt: "Aerial view of the North County coastline and the coast highway" },
+    hero: { src: `${U}/2026/11/marathon-runners-kinesiology-tape-knees.jpg`, alt: "Runners at a race start, one with kinesiology tape on both knees" },
     local: {
       heading: "From the seawall to the Carlsbad 5000",
       text: "Our runners train on the coast highway, the seawall and the lagoon trails, and every spring a lot of them line up for the Carlsbad 5000 on Carlsbad Boulevard, the race known as the “World's Fastest 5K.” We plan your rehab around your race calendar.",
@@ -194,7 +194,7 @@ export const activities: Activity[] = [
         { name: "Batiquitos Lagoon trail", note: "Soft dirt and gentle hills for easier days" },
         { name: "Lake Calavera", note: "Steep trail climbs and descents that load the calves and knees" },
       ],
-      image: { src: `${U}/2025/02/AdobeStock_485516813.jpeg`, alt: "Coastal path through native plants in Carlsbad" },
+      image: { src: `${U}/2025/02/AdobeStock_512646600.jpeg`, alt: "Aerial view of the North County coastline and the coast highway" },
     },
     stat: {
       figure: "17.8",

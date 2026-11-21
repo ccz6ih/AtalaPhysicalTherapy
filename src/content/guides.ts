@@ -454,7 +454,7 @@ const baseGuides: Guide[] = [
     description: "ACL rehab done one-on-one: prehab before surgery, a phase-by-phase recovery plan, and criteria-based return to sport. Physical therapy in Carlsbad, CA.",
     answer:
       "Recovering from an ACL reconstruction is a long, structured process — typically nine months or more before returning to cutting and pivoting sports. The best outcomes come from prehab before surgery, early work to restore full knee straightening and quad control, and a return to sport based on testing, not just the calendar.",
-    image: { src: `${U}/2023/03/Depositphotos_189860708_XL-scaled.jpg`, alt: "Athlete training during knee rehabilitation" },
+    image: { src: `${U}/2023/02/AdobeStock_226300363-scaled.jpeg`, alt: "Physical therapist working on a patient's leg during knee rehabilitation" },
     whatItIs: [
       "The anterior cruciate ligament (ACL) stabilizes the knee during cutting, landing and pivoting. Tears usually happen without contact — a plant-and-turn in soccer, basketball, skiing or volleyball.",
       "Not every ACL tear needs surgery, especially for people who don’t play pivoting sports. For those who do, reconstruction is common, and rehab determines how well the knee performs afterward.",

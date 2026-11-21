@@ -19,7 +19,7 @@ export const moreGuides: Guide[] = [
       "How long a sprained ankle takes to heal, when to start moving it, and how physical therapy prevents the next sprain. One-on-one ankle rehab in Carlsbad — no referral needed.",
     answer:
       "A sprained ankle is a stretch or tear of the ligaments on the outside of the ankle, usually from rolling the foot inward. Most heal well, but many people go on to sprain the same ankle again. Physical therapy gets you walking normally sooner, then rebuilds the balance and strength that protect the ankle from the next one.",
-    image: { src: `${U}/2022/11/at-physiotherapist.jpg`, alt: "Physical therapist guiding a patient through a lower-leg exercise" },
+    image: { src: `${U}/2026/11/runner-holding-sprained-ankle.jpg`, alt: "Runner holding a sore ankle on a waterfront path" },
     whatItIs: [
       "Most ankle sprains are lateral sprains: the foot rolls under, and the ligaments on the outside of the ankle are overstretched or torn. They range from a mild stretch to a complete tear of one or more ligaments.",
       "The ligaments usually heal. The bigger problem is what is left behind: weaker muscles around the ankle and slower balance reactions. That is why a first sprain so often turns into a second and third, a pattern called chronic ankle instability, where the ankle feels like it might give way.",
@@ -397,7 +397,7 @@ export const moreGuides: Guide[] = [
       "Pain reaching overhead or sleeping on your shoulder? Why exercise is the first-line treatment for shoulder impingement, and what research says about surgery. Carlsbad PT.",
     answer:
       "Shoulder impingement — now often called subacromial or rotator cuff–related shoulder pain — is pain on the outside of the shoulder when lifting the arm, reaching overhead or lying on that side. Exercise therapy is the recommended first-line treatment. A placebo-controlled surgical trial found decompression surgery offered no clinically important benefit over a sham procedure.",
-    image: { src: `${U}/2023/02/Depositphotos_33446783_XL-scaled.jpg`, alt: "Therapist applying kinesiology tape to a patient's shoulder" },
+    image: { src: `${U}/2026/11/physical-therapist-shoulder-dumbbell-exercise.jpg`, alt: "Physical therapist guiding a patient through an overhead shoulder exercise with dumbbells" },
     whatItIs: [
       "“Impingement” was named after the idea that the rotator cuff tendons get pinched under the bony roof of the shoulder (the acromion). We now understand the pain usually comes from the rotator cuff tendons and the bursa becoming overloaded and sensitive, rather than from bone pressing on tendon.",
       "That distinction matters for treatment. Shaving bone away doesn't address tendon capacity; progressive strengthening does.",

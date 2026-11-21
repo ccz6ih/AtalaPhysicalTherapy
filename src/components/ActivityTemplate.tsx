@@ -48,8 +48,11 @@ export function ActivityTemplate({ activity: a }: { activity: Activity }) {
 
       {/* Hero: full-bleed photo, copy on a marine scrim */}
       <section data-stage="Overview" className="on-dark relative isolate overflow-hidden bg-marine text-white">
-        <Pic src={a.hero.src} alt={a.hero.alt} fill priority sizes="100vw" className="-z-10 object-cover opacity-60" />
-        <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(30,43,49,.94)_0%,rgba(30,43,49,.78)_45%,rgba(30,43,49,.2)_100%)]" />
+        <div className="absolute inset-y-0 right-0 -z-10 w-full lg:w-[64%]">
+          <Pic src={a.hero.src} alt={a.hero.alt} fill priority sizes="(min-width:1024px) 64vw, 100vw" className="object-cover opacity-45 lg:opacity-100" />
+          <div aria-hidden className="absolute inset-0 bg-marine/55 lg:hidden" />
+          <div aria-hidden className="absolute inset-0 bg-[linear-gradient(90deg,rgba(30,43,49,1)_0%,rgba(30,43,49,.55)_30%,rgba(30,43,49,0)_65%)] max-lg:hidden" />
+        </div>
         <div className="wrap pb-20 pt-8 lg:pb-28 lg:pt-12">
           <Breadcrumbs className="[&_*]:!text-white/75 [&_[aria-current]]:!text-white" items={[{ name: "Sports Rehabilitation", href: "/sports-rehabilitation/" }, { name: a.name, href: activityPath(a.slug) }]} />
           <div className="mt-12 max-w-[40rem] lg:mt-20">
