@@ -91,3 +91,5 @@ Carried over from WordPress: GTM `GTM-MJR3WK7S` and `GTM-T6RNMD9F` (Elementor sn
 - **Altitude rail** (`AltitudeRail.tsx`): the elevation line pinned to the right edge on large screens; waypoints come from `data-stage` attributes on sections (falls back to `h2`s). Small screens get a thin progress bar.
 - **Zoom-out menu** (`SiteMenu.tsx`, `Shell.tsx`, `MenuContext.tsx`): the page zooms out to reveal a wayfinding menu ("Where are you starting?"); choosing a link zooms back in, then navigates.
 - **Page transitions** (`app/template.tsx` + `globals.css`): React `<ViewTransition>`; the new page rises behind a mountain-ridge edge. All motion is disabled under `prefers-reduced-motion`.
+
+**Body map artwork:** `public/brand/body-map.svg` is Adobe Stock #1516525606 (licensed by The Modern Evolution), recolored to the Atala palette with metadata stripped. Hotspot and glow positions in `BodyMap.tsx` use its 1024×1024 coordinate space — keep them in sync if the artwork is swapped.

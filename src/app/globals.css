@@ -312,3 +312,5 @@ html.menu-open [data-section="mobile-bar"] { transform: translateY(110%); }
   ::view-transition-old(*),
   ::view-transition-new(*) { animation: none !important; }
 }
+
+@keyframes bm-in { from { opacity: 0; } }

@@ -82,35 +82,34 @@ const regionInfo: Record<RegionId, { label: string; intro: string; plan: [string
   },
 };
 
-/** Figure parts, tagged with the region they belong to. Coordinates in a 260×560 viewBox. */
-const limbs: { id: string; region: RegionId; x1: number; y1: number; x2: number; y2: number; w: number }[] = [
-  { id: "neck", region: "spine", x1: 130, y1: 82, x2: 130, y2: 106, w: 24 },
-  { id: "uarm-l", region: "shoulder", x1: 90, y1: 124, x2: 70, y2: 214, w: 24 },
-  { id: "uarm-r", region: "shoulder", x1: 170, y1: 124, x2: 190, y2: 214, w: 24 },
-  { id: "farm-l", region: "elbow-wrist-hand", x1: 70, y1: 214, x2: 58, y2: 298, w: 20 },
-  { id: "farm-r", region: "elbow-wrist-hand", x1: 190, y1: 214, x2: 202, y2: 298, w: 20 },
-  { id: "thigh-l", region: "hip", x1: 113, y1: 296, x2: 109, y2: 408, w: 34 },
-  { id: "thigh-r", region: "hip", x1: 147, y1: 296, x2: 151, y2: 408, w: 34 },
-  { id: "shin-l", region: "knee", x1: 109, y1: 408, x2: 107, y2: 508, w: 26 },
-  { id: "shin-r", region: "knee", x1: 151, y1: 408, x2: 153, y2: 508, w: 26 },
+/** Hotspots and highlight glows, in the 1024×1024 space of /brand/body-map.svg. */
+const hotspots: { region: RegionId; x: number; y: number; name: string }[] = [
+  { region: "balance", x: 515, y: 92, name: "Head — balance and dizziness" },
+  { region: "spine", x: 515, y: 172, name: "Neck" },
+  { region: "shoulder", x: 418, y: 238, name: "Left shoulder" },
+  { region: "shoulder", x: 612, y: 238, name: "Right shoulder" },
+  { region: "spine", x: 515, y: 405, name: "Lower back" },
+  { region: "elbow-wrist-hand", x: 318, y: 318, name: "Left elbow" },
+  { region: "elbow-wrist-hand", x: 712, y: 318, name: "Right elbow" },
+  { region: "elbow-wrist-hand", x: 218, y: 388, name: "Left wrist and hand" },
+  { region: "elbow-wrist-hand", x: 810, y: 388, name: "Right wrist and hand" },
+  { region: "hip", x: 462, y: 505, name: "Left hip" },
+  { region: "hip", x: 568, y: 505, name: "Right hip" },
+  { region: "knee", x: 468, y: 688, name: "Left knee" },
+  { region: "knee", x: 552, y: 688, name: "Right knee" },
+  { region: "foot-ankle", x: 466, y: 905, name: "Left ankle and foot" },
+  { region: "foot-ankle", x: 558, y: 905, name: "Right ankle and foot" },
 ];
 
-const hotspots: { region: RegionId; x: number; y: number; name: string }[] = [
-  { region: "balance", x: 130, y: 52, name: "Head — balance and dizziness" },
-  { region: "spine", x: 130, y: 98, name: "Neck" },
-  { region: "shoulder", x: 92, y: 124, name: "Left shoulder" },
-  { region: "shoulder", x: 168, y: 124, name: "Right shoulder" },
-  { region: "spine", x: 130, y: 232, name: "Lower back" },
-  { region: "elbow-wrist-hand", x: 70, y: 214, name: "Left elbow" },
-  { region: "elbow-wrist-hand", x: 190, y: 214, name: "Right elbow" },
-  { region: "elbow-wrist-hand", x: 56, y: 310, name: "Left wrist and hand" },
-  { region: "hip", x: 110, y: 290, name: "Left hip" },
-  { region: "hip", x: 150, y: 290, name: "Right hip" },
-  { region: "knee", x: 109, y: 410, name: "Left knee" },
-  { region: "knee", x: 151, y: 410, name: "Right knee" },
-  { region: "foot-ankle", x: 105, y: 516, name: "Left ankle and foot" },
-  { region: "foot-ankle", x: 155, y: 516, name: "Right ankle and foot" },
-];
+const glows: Record<RegionId, { cx: number; cy: number; rx: number; ry: number; rot?: number }[]> = {
+  balance: [{ cx: 515, cy: 100, rx: 90, ry: 95 }],
+  spine: [{ cx: 515, cy: 290, rx: 85, ry: 220 }],
+  shoulder: [{ cx: 418, cy: 238, rx: 80, ry: 72 }, { cx: 612, cy: 238, rx: 80, ry: 72 }],
+  "elbow-wrist-hand": [{ cx: 268, cy: 350, rx: 120, ry: 60, rot: -28 }, { cx: 762, cy: 350, rx: 120, ry: 60, rot: 28 }],
+  hip: [{ cx: 515, cy: 505, rx: 135, ry: 80 }],
+  knee: [{ cx: 468, cy: 688, rx: 62, ry: 70 }, { cx: 552, cy: 688, rx: 62, ry: 70 }],
+  "foot-ankle": [{ cx: 466, cy: 910, rx: 52, ry: 78 }, { cx: 558, cy: 910, rx: 52, ry: 78 }],
+};
 
 const order: RegionId[] = ["spine", "shoulder", "elbow-wrist-hand", "hip", "knee", "foot-ankle", "balance"];
 
@@ -126,7 +125,6 @@ export function BodyMap({ heading = "Where does it hurt?", intro = "Tap the area
     }
   };
 
-  const tint = (r: RegionId) => (active === r ? "#f0d3d3" : "#ffffff");
   const info = active ? regionInfo[active] : null;
   const cond = active ? conditionRegions.find((c) => c.id === active) : null;
   const regionGuides = active ? guides.filter((g) => g.region === active) : [];
@@ -137,42 +135,39 @@ export function BodyMap({ heading = "Where does it hurt?", intro = "Tap the area
         <h2 className="display-lg">{heading}</h2>
         <p className="lede mt-4 max-w-md">{intro}</p>
 
-        <div className="relative mx-auto mt-8 max-w-[22rem]">
-          <svg viewBox="0 0 260 560" className="h-auto w-full" role="group" aria-label="Body map">
-            {/* outline layer */}
-            <g stroke="var(--color-line)" strokeLinecap="round" fill="none">
-              {limbs.map((l) => (
-                <line key={l.id} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} strokeWidth={l.w + 4} />
+        <div className="relative mx-auto mt-8 max-w-[34rem] overflow-hidden rounded-[1.5rem] bg-white">
+          {/* eslint-disable-next-line @next/next/no-img-element -- static vector illustration */}
+          <img src="/brand/body-map.svg" alt="" width={1024} height={1024} loading="lazy" decoding="async" className="block h-auto w-full select-none" draggable={false} />
+          <svg viewBox="0 0 1024 1024" className="absolute inset-0 h-full w-full" role="group" aria-label="Body map: choose where it hurts">
+            <defs>
+              <radialGradient id="bm-glow">
+                <stop offset="0%" stopColor="#b5262b" stopOpacity="0.55" />
+                <stop offset="60%" stopColor="#b5262b" stopOpacity="0.22" />
+                <stop offset="100%" stopColor="#b5262b" stopOpacity="0" />
+              </radialGradient>
+            </defs>
+            {active &&
+              glows[active].map((g, i) => (
+                <ellipse
+                  key={`${active}-${i}`}
+                  cx={g.cx}
+                  cy={g.cy}
+                  rx={g.rx}
+                  ry={g.ry}
+                  transform={g.rot ? `rotate(${g.rot} ${g.cx} ${g.cy})` : undefined}
+                  fill="url(#bm-glow)"
+                  className="animate-[bm-in_.45s_ease-out] motion-reduce:animate-none"
+                  style={{ mixBlendMode: "multiply" }}
+                />
               ))}
-              <circle cx="130" cy="52" r="31" fill="var(--color-line)" stroke="none" />
-              <path d="M86 112 Q130 98 174 112 L171 206 Q168 252 162 292 L98 292 Q92 252 89 206 Z" fill="var(--color-line)" stroke="var(--color-line)" strokeWidth="4" strokeLinejoin="round" />
-              <circle cx="56" cy="316" r="13" fill="var(--color-line)" stroke="none" />
-              <circle cx="204" cy="316" r="13" fill="var(--color-line)" stroke="none" />
-              <ellipse cx="103" cy="526" rx="20" ry="10" fill="var(--color-line)" stroke="none" />
-              <ellipse cx="157" cy="526" rx="20" ry="10" fill="var(--color-line)" stroke="none" />
-            </g>
-            {/* fill layer */}
-            <g strokeLinecap="round">
-              {limbs.map((l) => (
-                <line key={l.id} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} strokeWidth={l.w} stroke={tint(l.region)} className="transition-[stroke] duration-300" />
-              ))}
-              <circle cx="130" cy="52" r="29" fill={tint("balance")} />
-              <path d="M88 114 Q130 101 172 114 L169 206 Q166 250 160 290 L100 290 Q94 250 91 206 Z" fill={tint("spine")} />
-              <circle cx="56" cy="316" r="11" fill={tint("elbow-wrist-hand")} />
-              <circle cx="204" cy="316" r="11" fill={tint("elbow-wrist-hand")} />
-              <ellipse cx="103" cy="526" rx="18" ry="8" fill={tint("foot-ankle")} />
-              <ellipse cx="157" cy="526" rx="18" ry="8" fill={tint("foot-ankle")} />
-            </g>
-            {/* spine line hint */}
-            <path d="M130 118 L130 272" stroke="var(--color-line)" strokeWidth="2" strokeDasharray="2 7" strokeLinecap="round" />
-
             {hotspots.map((h) => {
               const on = active === h.region;
               return (
                 <g key={h.name} transform={`translate(${h.x} ${h.y})`}>
-                  {on && <circle r="17" className="animate-[ping_1.8s_ease-out_infinite] motion-reduce:animate-none" fill="var(--color-oxblood)" opacity=".18" />}
+                  {on && <circle r="30" className="animate-[ping_1.8s_ease-out_infinite] motion-reduce:animate-none" fill="var(--color-oxblood)" opacity=".2" />}
+                  <circle r="34" fill="transparent" className="cursor-pointer" onClick={() => select(h.region)} aria-hidden />
                   <circle
-                    r={on ? 10 : 8}
+                    r={on ? 17 : 13}
                     role="button"
                     tabIndex={0}
                     aria-label={`${h.name}: show ${regionInfo[h.region].label.toLowerCase()} conditions`}
@@ -184,15 +179,16 @@ export function BodyMap({ heading = "Where does it hurt?", intro = "Tap the area
                         select(h.region);
                       }
                     }}
-                    className="cursor-pointer outline-none transition-all duration-200 focus-visible:stroke-[var(--color-signal)] [&:hover]:fill-[var(--color-oxblood)]"
+                    className="cursor-pointer outline-none transition-all duration-200 hover:fill-[var(--color-oxblood)] focus-visible:stroke-[var(--color-signal)]"
                     fill={on ? "var(--color-oxblood)" : "var(--color-marine)"}
                     stroke="#fff"
-                    strokeWidth="3"
+                    strokeWidth="5"
                   />
                 </g>
               );
             })}
           </svg>
+          <p className="ui pointer-events-none absolute left-5 top-4 text-[0.85rem] font-[600] text-muted">{active ? regionInfo[active].label : "Tap a dot"}</p>
         </div>
 
         <ul className="ui mt-6 flex flex-wrap justify-center gap-2 lg:justify-start" aria-label="Choose an area">
