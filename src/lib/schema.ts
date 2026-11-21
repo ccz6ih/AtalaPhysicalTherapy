@@ -107,10 +107,10 @@ export function siteGraph() {
       {
         "@type": "ImageObject",
         "@id": ids.logo,
-        url: `${site.url}/brand/atala-logo.png`,
-        contentUrl: `${site.url}/brand/atala-logo.png`,
-        width: 200,
-        height: 159,
+        url: `${site.url}/brand/atala-logo-800.png`,
+        contentUrl: `${site.url}/brand/atala-logo-800.png`,
+        width: 800,
+        height: 636,
         caption: site.name,
       },
       {

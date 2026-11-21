@@ -93,3 +93,23 @@ Carried over from WordPress: GTM `GTM-MJR3WK7S` and `GTM-T6RNMD9F` (Elementor sn
 - **Page transitions** (`app/template.tsx` + `globals.css`): React `<ViewTransition>`; the new page rises behind a mountain-ridge edge. All motion is disabled under `prefers-reduced-motion`.
 
 **Body map artwork:** `public/brand/body-map.svg` is Adobe Stock #1516525606 (licensed by The Modern Evolution), recolored to the Atala palette with metadata stripped. Hotspot and glow positions in `BodyMap.tsx` use its 1024×1024 coordinate space — keep them in sync if the artwork is swapped.
+
+## Share images (Open Graph)
+
+Every page has a branded 1200×630 share card: logo, page title and the ridge line on the left, the page's photo on the right.
+
+- Renderer: `src/lib/og.tsx` (fonts in `src/assets/og/`). Images are drawn once at build time and cached; they're served as JPEG to stay under WhatsApp's preview size limit.
+- Each route has a small `opengraph-image.tsx` that passes its title, subtitle and photo. `src/app/opengraph-image.tsx` is the fallback for any page without its own.
+- **Adding a page or guide:** copy a sibling `opengraph-image.tsx` into the new route folder and change the slug.
+
+## Logo
+
+`public/brand/atala-logo.svg` (dark) and `atala-logo-white.svg` (on dark backgrounds) are vector traces of the original 200px PNG. `atala-logo-800.png` is a high-resolution raster used for the logo in structured data. If the clinic ever finds the designer's original vector file, drop it in at the same paths.
+
+## Activity pages
+
+`/physical-therapy-for-surfers/`, `/physical-therapy-for-golfers/` and `/physical-therapy-for-runners/` come from `src/content/activities.ts` and `src/components/ActivityTemplate.tsx`. They link into the condition guides and appear in the menu ("By sport"), on the Sports Rehabilitation page and in the sitemap. Local places (Tamarack, Aviara, Carlsbad 5000, etc.) are named descriptively; Atala isn't affiliated with them, and the pages say so.
+
+## Condition guides, batch 2
+
+Ankle sprain, Achilles tendinopathy, meniscus tear, carpal tunnel syndrome, spinal stenosis and shoulder impingement live in `src/content/guides-more.ts` and are merged into `guides` automatically (body map, menu, hub and sitemap pick them up). As with batch 1, set `reviewedBy` once Terri has read them.

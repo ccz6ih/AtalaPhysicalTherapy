@@ -40,7 +40,7 @@ export function Header() {
       </a>
       <div className="wrap flex h-[4.75rem] items-center gap-4 lg:h-[5.25rem]">
         <Link href="/" className="shrink-0" aria-label="Atala Physical Therapy home">
-          <Image src="/brand/atala-logo.png" alt="Atala Physical Therapy — Reach your highest peak" width={200} height={159} priority className="h-[52px] w-auto lg:h-[60px]" />
+          <Image src="/brand/atala-logo.svg" alt="Atala Physical Therapy — Reach your highest peak" width={200} height={159} priority unoptimized className="h-[52px] w-auto lg:h-[60px]" />
         </Link>
 
         <nav aria-label="Main" className="ui ml-auto hidden xl:block">

@@ -6,6 +6,7 @@ import { useMenu } from "./MenuContext";
 import { site } from "@/content/site";
 import { services } from "@/content/services";
 import { guides, guidePath } from "@/content/guides";
+import { activities, activityPath } from "@/content/activities";
 
 const paths = [
   { href: "/conditions-we-treat/#body-map", title: "I’m in pain", note: "Find your condition on the body map" },
@@ -69,7 +70,7 @@ export function SiteMenu() {
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-[url('/brand/contours-light.svg')] bg-[length:1500px_auto] bg-[position:left_-300px_top_-100px] bg-no-repeat" />
       <div className="relative w-[84vw] px-6 pb-16 pt-5 sm:px-10 md:w-[62vw] lg:pl-[max(2.5rem,calc((100vw-82rem)/2+3rem))]">
         <div className="flex items-center justify-between gap-4">
-          <Image src="/brand/atala-logo-white.png" alt="Atala Physical Therapy" width={200} height={159} className="h-12 w-auto" />
+          <Image src="/brand/atala-logo-white.svg" alt="Atala Physical Therapy" width={200} height={159} unoptimized className="h-12 w-auto" />
           <button ref={closeRef} type="button" onClick={() => setOpen(false)} className="ui flex h-11 items-center gap-2 rounded-full border border-white/30 px-4 font-[600] text-white hover:bg-white hover:text-marine">
             Close
             <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
@@ -102,6 +103,14 @@ export function SiteMenu() {
               {services.map((s) => (
                 <li key={s.slug}>
                   <L href={s.path} className="hover:text-white">{s.name.replace(" & Athletic Recovery", "").replace("Industrial Medicine & Workers' Compensation Rehabilitation", "Workers' comp rehab")}</L>
+                </li>
+              ))}
+            </ul>
+            <h3 className="ui mt-8 text-[0.95rem] font-[650] text-white">By sport</h3>
+            <ul className="ui mt-3 space-y-2 text-[0.95rem]">
+              {activities.map((a) => (
+                <li key={a.slug}>
+                  <L href={activityPath(a.slug)} className="hover:text-white">{a.name}</L>
                 </li>
               ))}
             </ul>

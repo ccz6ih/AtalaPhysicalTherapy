@@ -44,7 +44,9 @@ const IMAGING = {
   url: "https://pubmed.ncbi.nlm.nih.gov/25430861/",
 };
 
-export const guides: Guide[] = [
+import { moreGuides } from "./guides-more";
+
+const baseGuides: Guide[] = [
   {
     slug: "sciatica",
     region: "spine",
@@ -832,6 +834,8 @@ export const guides: Guide[] = [
   },
 ];
 
+export const guides: Guide[] = [...baseGuides, ...moreGuides];
+
 export const getGuide = (slug: string) => {
   const g = guides.find((x) => x.slug === slug);
   if (!g) throw new Error(`Unknown guide ${slug}`);
@@ -839,3 +843,6 @@ export const getGuide = (slug: string) => {
 };
 
 export const guidePath = (slug: string) => `/conditions-we-treat/${slug}/`;
+
+/** Condition name for use mid-sentence: lowercase, except proper nouns like "Achilles". */
+export const midName = (name: string) => (/^(Achilles|ACL)\b/.test(name) ? name : name.charAt(0).toLowerCase() + name.slice(1));

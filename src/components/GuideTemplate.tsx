@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { guides, guidePath, type Guide } from "@/content/guides";
+import { guides, guidePath, midName, type Guide } from "@/content/guides";
 import { site } from "@/content/site";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { Pic } from "./Pic";
@@ -114,7 +114,7 @@ export function GuideTemplate({ guide: g }: { guide: Guide }) {
 
           <article className="max-w-[44rem] text-[1.06rem]">
             <section id="what" data-stage="What it is" aria-labelledby="what-h">
-              <h2 id="what-h" className="display-md">What is {g.name.toLowerCase().replace("rehab", "rehabilitation")}?</h2>
+              <h2 id="what-h" className="display-md">What is {midName(g.name).replace("rehab", "rehabilitation")}?</h2>
               <div className="mt-5 space-y-4">
                 {g.whatItIs.map((p, i) => (
                   <p key={i}>{p}</p>
@@ -197,7 +197,7 @@ export function GuideTemplate({ guide: g }: { guide: Guide }) {
             </section>
 
             <section id="faq" data-stage="Questions" aria-labelledby="faq-h" className="mt-16">
-              <h2 id="faq-h" className="display-md">Questions we hear about {g.name.toLowerCase()}</h2>
+              <h2 id="faq-h" className="display-md">Questions we hear about {midName(g.name)}</h2>
               <div className="mt-6 divide-y divide-line border-y border-line">
                 {g.faqs.map((f) => (
                   <details key={f.q} className="group py-5">
@@ -256,7 +256,7 @@ export function GuideTemplate({ guide: g }: { guide: Guide }) {
       )}
 
       <ReviewsSection heading="From patients who've been there" />
-      <CtaBand heading={`Ready to get past ${g.name.toLowerCase()}?`} />
+      <CtaBand heading={`Ready to get past ${midName(g.name)}?`} />
     </>
   );
 }

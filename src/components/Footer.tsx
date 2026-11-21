@@ -24,7 +24,7 @@ export function Footer() {
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-[url('/brand/contours-light.svg')] bg-[length:1600px_auto] bg-[position:right_-200px_top_-120px] bg-no-repeat" />
       <div className="wrap relative grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr] lg:py-20">
         <div>
-          <Image src="/brand/atala-logo-white.png" alt="Atala Physical Therapy" width={200} height={159} className="h-16 w-auto" />
+          <Image src="/brand/atala-logo-white.svg" alt="Atala Physical Therapy" width={200} height={159} unoptimized className="h-16 w-auto" />
           <p className="mt-6 max-w-xs text-[1.02rem] text-white/75">
             Personalized care to help you reach your highest peak. Boutique orthopedic physical therapy in Carlsbad since {site.foundingYear}.
           </p>

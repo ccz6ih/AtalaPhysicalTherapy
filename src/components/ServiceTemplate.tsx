@@ -8,6 +8,7 @@ import { Breadcrumbs } from "./Breadcrumbs";
 import { GoogleBadge, ReviewsSection } from "./Reviews";
 import { CtaBand } from "./CtaBand";
 import { ResourcesStrip } from "./ResourcesStrip";
+import { activities, activityPath } from "@/content/activities";
 import { LeadForm } from "./LeadForm";
 import { JsonLd } from "./JsonLd";
 import { ids } from "@/lib/schema";
@@ -142,6 +143,28 @@ export function ServiceTemplate({ service: s }: { service: Service }) {
           </div>
         </div>
       </section>
+
+      {s.slug === "sports-rehabilitation" && (
+        <section data-stage="By sport" className="py-20 lg:py-24" aria-labelledby="sport-h">
+          <div className="wrap">
+            <h2 id="sport-h" className="display-md">Physical therapy for the sports Carlsbad plays</h2>
+            <ul className="mt-8 grid gap-5 md:grid-cols-3">
+              {activities.map((a) => (
+                <li key={a.slug}>
+                  <Link href={activityPath(a.slug)} className="group relative block aspect-[4/3] overflow-hidden rounded-[1.25rem] bg-marine">
+                    <Pic src={a.hero.src} alt="" fill sizes="(min-width:768px) 33vw, 100vw" className="object-cover opacity-70 transition-transform duration-700 group-hover:scale-[1.04]" />
+                    <span className="absolute inset-0 bg-[linear-gradient(0deg,rgba(30,43,49,.9),rgba(30,43,49,0)_60%)]" />
+                    <span className="absolute inset-x-6 bottom-5">
+                      <span className="ui block text-[1.5rem] font-[750] text-white">{a.name}</span>
+                      <span className="ui mt-1 block text-[0.92rem] text-white/80">{a.local.heading}</span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       <ReviewsSection heading="Patients who've been where you are" />
 

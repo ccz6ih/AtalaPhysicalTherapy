@@ -25,7 +25,6 @@ export function pageMeta(path: string, o: { title?: string; description?: string
   const e = table[path];
   const title = tidyTitle(o.title ?? e?.title ?? site.name);
   const description = o.description ?? e?.description ?? site.description;
-  const image = o.image ?? e?.ogImage ?? DEFAULT_OG;
   const url = `${site.url}${path}`;
   return {
     title: { absolute: title },
@@ -39,8 +38,8 @@ export function pageMeta(path: string, o: { title?: string; description?: string
       description,
       siteName: site.name,
       locale: "en_US",
-      images: [{ url: image }],
+      // Share images come from each route's opengraph-image.tsx (app/opengraph-image.tsx is the fallback).
     },
-    twitter: { card: "summary_large_image", title, description, images: [image] },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
