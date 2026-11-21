@@ -8,7 +8,7 @@ import { ResourcesStrip } from "@/components/ResourcesStrip";
 import { CtaBand } from "@/components/CtaBand";
 import { JsonLd } from "@/components/JsonLd";
 import { images, services } from "@/content/services";
-import { conditionRegions } from "@/content/conditions";
+import { BodyMap } from "@/components/BodyMap";
 import { site } from "@/content/site";
 import { pageMeta } from "@/lib/seo";
 import { webPage } from "@/lib/schema";
@@ -40,7 +40,7 @@ export default function Home() {
       <JsonLd data={webPage("/", "Top-Rated Physical Therapy Services in Carlsbad, CA | Atala PT", site.description, "MedicalWebPage", { primaryImageOfPage: `${site.url}/brand/og-default.jpg` })} />
 
       {/* Hero */}
-      <section data-section="hero" className="contours relative overflow-hidden bg-[position:right_-160px_top_-60px] pt-8 lg:pt-14">
+      <section data-stage="Basecamp" data-section="hero" className="contours relative overflow-hidden bg-[position:right_-160px_top_-60px] pt-8 lg:pt-14">
         <div className="wrap grid items-center gap-10 lg:grid-cols-[1.6fr_1fr] lg:gap-14">
           <div className="relative z-10 pb-4">
             <p className="ui text-[0.98rem] font-[560] text-sage">Boutique orthopedic physical therapy in Carlsbad since {site.foundingYear}</p>
@@ -82,7 +82,7 @@ export default function Home() {
       </section>
 
       {/* Cash-based / direct pay */}
-      <section data-section="direct-pay" className="on-dark bg-marine pb-24 pt-10 text-white/85 lg:pb-28" aria-labelledby="direct-h">
+      <section data-stage="Pay direct" data-section="direct-pay" className="on-dark bg-marine pb-24 pt-10 text-white/85 lg:pb-28" aria-labelledby="direct-h">
         <div className="wrap">
           <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-end">
             <h2 id="direct-h" className="display-lg max-w-[40rem] !text-white">
@@ -142,7 +142,7 @@ export default function Home() {
       </section>
 
       {/* Story / holistic approach */}
-      <section data-section="about" className="py-24 lg:py-32" aria-labelledby="about-h">
+      <section data-stage="Our approach" data-section="about" className="py-24 lg:py-32" aria-labelledby="about-h">
         <div className="wrap grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
           <div className="relative order-last lg:order-first">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[1.25rem]">
@@ -185,7 +185,7 @@ export default function Home() {
       </section>
 
       {/* The Atala difference */}
-      <section data-section="difference" className="bg-white py-24 lg:py-28" aria-labelledby="diff-h">
+      <section data-stage="The difference" data-section="difference" className="bg-white py-24 lg:py-28" aria-labelledby="diff-h">
         <div className="wrap grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <h2 id="diff-h" className="display-lg">The Atala difference</h2>
@@ -215,7 +215,7 @@ export default function Home() {
       </section>
 
       {/* Services */}
-      <section data-section="services" className="py-24 lg:py-28" aria-labelledby="svc-h">
+      <section data-stage="Services" data-section="services" className="py-24 lg:py-28" aria-labelledby="svc-h">
         <div className="wrap">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <h2 id="svc-h" className="display-lg">We can help you with</h2>
@@ -241,71 +241,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Conditions */}
-      <section data-section="conditions" className="bg-fog-2 py-24 lg:py-28" aria-labelledby="cond-h">
-        <div className="wrap grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
-          <div>
+      {/* Conditions + body map */}
+      <section data-stage="Where it hurts" data-section="conditions" className="bg-fog-2 py-24 lg:py-28" aria-labelledby="cond-h">
+        <div className="wrap">
+          <div className="grid gap-8 border-b border-marine/15 pb-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
             <h2 id="cond-h" className="display-lg">Comprehensive treatment for a range of conditions</h2>
-            <div className="mt-6 space-y-4 text-[1.05rem]">
+            <div className="space-y-4 text-[1.05rem]">
               <p>
                 At Atala Physical Therapy, we&apos;re here to help get you back to feeling your best! We specialize in treating a wide range of musculoskeletal conditions, primarily those that are orthopedic in nature.
               </p>
               <p>
-                Whether you&apos;re dealing with an injury from trauma, poor posture, muscle imbalances, nerve damage, overuse injuries, or post-operative complications, we&apos;ve got you covered. We treat all the conditions below and more; if you have any questions, just ask!
+                Whether you&apos;re dealing with an injury from trauma, poor posture, muscle imbalances, nerve damage, overuse injuries, or post-operative complications, we&apos;ve got you covered.{" "}
+                <Link href="/conditions-we-treat/" className="link">
+                  See every condition we treat
+                </Link>
               </p>
             </div>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/conditions-we-treat/" className="btn btn-primary">
-                See every condition we treat
-              </Link>
-              <a href={site.phoneHref} className="btn btn-ghost" data-track="conditions">
-                Questions? Call us
-              </a>
-            </div>
           </div>
-          <div>
-            <p className="ui text-[0.95rem] font-[600] text-marine">Where does it hurt?</p>
-            <ul className="mt-4 flex flex-wrap gap-2.5">
-              {conditionRegions.map((r) => (
-                <li key={r.id}>
-                  <Link href={`/conditions-we-treat/#${r.id}`} className="ui inline-flex items-center rounded-full border border-marine/20 bg-white px-5 py-3 text-[1.02rem] font-[600] text-marine transition-colors hover:border-oxblood hover:bg-oxblood hover:text-white">
-                    {r.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-10 grid gap-8 sm:grid-cols-2">
-              <div>
-                <h3 className="ui text-[1.1rem] font-[700]">Non-surgical</h3>
-                <ul className="peak-list mt-3 text-[1rem]">
-                  {["Sciatica", "Herniated disc", "General spine sprain/strain", "Stenosis"].map((c) => (
-                    <li key={c}>{c}</li>
-                  ))}
-                </ul>
-                <Link href="/non-surgical-injury-rehabilitation/" className="link mt-4 inline-block text-[0.95rem]">
-                  Non-surgical rehab
-                </Link>
-              </div>
-              <div>
-                <h3 className="ui text-[1.1rem] font-[700]">Post-surgical</h3>
-                <ul className="peak-list mt-3 text-[1rem]">
-                  {["Microdiscectomy", "Laminectomy", "Fusion", "Disc replacement"].map((c) => (
-                    <li key={c}>{c}</li>
-                  ))}
-                </ul>
-                <Link href="/pre-and-post-surgical-rehabilitation/" className="link mt-4 inline-block text-[0.95rem]">
-                  Pre &amp; post-surgical rehab
-                </Link>
-              </div>
-            </div>
+          <div className="pt-14">
+            <BodyMap />
           </div>
         </div>
       </section>
 
-      <ReviewsSection heading="Some of our best patient reviews" intro="Real words from real patients, posted on Google." />
+      <ReviewsSection stage="Reviews" heading="Some of our best patient reviews" intro="Real words from real patients, posted on Google." />
 
       {/* Team */}
-      <section data-section="team" className="pb-24 lg:pb-28" aria-labelledby="team-h">
+      <section data-stage="Your team" data-section="team" className="pb-24 lg:pb-28" aria-labelledby="team-h">
         <div className="wrap">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <h2 id="team-h" className="display-lg max-w-2xl">The professional team who&apos;ll guide your climb</h2>
@@ -322,7 +284,7 @@ export default function Home() {
       <WallOfFame />
 
       {/* Quiz */}
-      <section data-section="quiz-promo" className="py-24 lg:py-28" aria-labelledby="quiz-h">
+      <section data-stage="Your plan" data-section="quiz-promo" className="py-24 lg:py-28" aria-labelledby="quiz-h">
         <div className="wrap">
           <div className="grid items-center gap-10 overflow-hidden rounded-2xl bg-white p-8 sm:p-12 lg:grid-cols-[1.3fr_1fr] lg:p-16">
             <div>

@@ -11,7 +11,7 @@ export function CtaBand({
   text?: string;
 }) {
   return (
-    <section data-section="cta" className="on-dark relative mt-[70px] bg-marine text-white sm:mt-[110px]" aria-labelledby="cta-h">
+    <section data-stage="Your peak" data-section="cta" className="on-dark relative mt-[70px] bg-marine text-white sm:mt-[110px]" aria-labelledby="cta-h">
       <RidgeDivider fill="var(--color-marine)" className="absolute bottom-full left-0" flip />
       <div className="wrap grid items-end gap-10 py-20 lg:grid-cols-[1.4fr_1fr] lg:py-24">
         <div>

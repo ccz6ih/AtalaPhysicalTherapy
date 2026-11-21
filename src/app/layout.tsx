@@ -2,6 +2,10 @@ import type { Metadata, Viewport } from "next";
 import { Archivo, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
+import { MenuProvider } from "@/components/MenuContext";
+import { Shell } from "@/components/Shell";
+import { SiteMenu } from "@/components/SiteMenu";
+import { AltitudeRail } from "@/components/AltitudeRail";
 import { Footer } from "@/components/Footer";
 import { MobileBar } from "@/components/MobileBar";
 import { Analytics, GtmNoScript } from "@/components/Analytics";
@@ -30,15 +34,21 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en-US" className={`${archivo.variable} ${sourceSerif.variable}`}>
-      <body className="flex min-h-screen flex-col">
+      <body>
         <GtmNoScript />
-        <Header />
-        <main id="main" className="flex-1">
-          {children}
-        </main>
-        <Footer />
-        <MobileBar />
-        <div className="h-[4.5rem] sm:hidden" aria-hidden />
+        <MenuProvider>
+          <SiteMenu />
+          <Shell>
+            <Header />
+            <main id="main" className="flex-1">
+              {children}
+            </main>
+            <Footer />
+            <div className="h-[4.5rem] sm:hidden" aria-hidden />
+          </Shell>
+          <MobileBar />
+          <AltitudeRail />
+        </MenuProvider>
         <JsonLd data={siteGraph()} />
         <Analytics />
       </body>

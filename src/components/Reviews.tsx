@@ -55,9 +55,9 @@ export function ReviewCard({ author, text }: { author: string; text: string }) {
   );
 }
 
-export function ReviewsSection({ heading = "What patients say after the climb", intro }: { heading?: string; intro?: string }) {
+export function ReviewsSection({ heading = "What patients say after the climb", intro, stage = "Reviews" }: { heading?: string; intro?: string; stage?: string }) {
   return (
-    <section data-section="reviews" className="py-20 lg:py-28" aria-labelledby="reviews-h">
+    <section data-stage={stage} data-section="reviews" className="py-20 lg:py-28" aria-labelledby="reviews-h">
       <div className="wrap">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">

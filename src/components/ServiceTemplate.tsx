@@ -40,7 +40,7 @@ export function ServiceTemplate({ service: s }: { service: Service }) {
         }}
       />
 
-      <section data-section="service-hero" className="contours bg-[position:right_-260px_top_-80px] pb-16 pt-8 lg:pb-24 lg:pt-12">
+      <section data-stage="Overview" data-section="service-hero" className="contours bg-[position:right_-260px_top_-80px] pb-16 pt-8 lg:pb-24 lg:pt-12">
         <div className="wrap">
           <Breadcrumbs items={[{ name: "Services", href: "/services/" }, { name: s.shortName, href: s.path }]} />
           <div className="mt-8 grid items-center gap-12 lg:grid-cols-[1.15fr_1fr]">
@@ -75,7 +75,7 @@ export function ServiceTemplate({ service: s }: { service: Service }) {
       </section>
 
       {/* First section: content + sticky aside with quick actions */}
-      <section data-section="service-understanding" className="bg-white py-20 lg:py-28">
+      <section data-stage="Understanding" data-section="service-understanding" className="bg-white py-20 lg:py-28">
         <div className="wrap grid gap-14 lg:grid-cols-[1.35fr_0.65fr] lg:gap-20">
           <div className="max-w-[44rem]">
             <h2 className="display-md">{first.heading}</h2>
@@ -101,7 +101,7 @@ export function ServiceTemplate({ service: s }: { service: Service }) {
       </section>
 
       {rest.map((sec, i) => (
-        <section key={sec.heading} data-section={`service-${i + 2}`} className={i % 2 === 0 ? "py-20 lg:py-28" : "bg-white py-20 lg:py-28"}>
+        <section key={sec.heading} data-stage={sec.heading.startsWith("How") ? "How we treat it" : sec.heading.replace("We Understand Your Needs", "Your needs")} data-section={`service-${i + 2}`} className={i % 2 === 0 ? "py-20 lg:py-28" : "bg-white py-20 lg:py-28"}>
           <div className={`wrap grid gap-14 ${sec.image ? "lg:grid-cols-2 lg:gap-20" : ""}`}>
             <div className={sec.image ? (i % 2 === 0 ? "lg:order-last" : "") : "max-w-[46rem]"}>
               <h2 className="display-md">{sec.heading}</h2>
@@ -119,7 +119,7 @@ export function ServiceTemplate({ service: s }: { service: Service }) {
       ))}
 
       {/* Why choose — dark */}
-      <section data-section="service-why" className="on-dark bg-marine py-20 text-white/80 lg:py-28">
+      <section data-stage="Why Atala" data-section="service-why" className="on-dark bg-marine py-20 text-white/80 lg:py-28">
         <div className="wrap grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <div>
             <h2 className="display-lg !text-white">{s.why.heading}</h2>
@@ -145,7 +145,7 @@ export function ServiceTemplate({ service: s }: { service: Service }) {
 
       <ReviewsSection heading="Patients who've been where you are" />
 
-      <section data-section="service-contact" className="bg-white py-20 lg:py-24">
+      <section data-stage="Get in touch" data-section="service-contact" className="bg-white py-20 lg:py-24">
         <div className="wrap grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
           <div>
             <h2 className="display-md">Other ways we can help</h2>

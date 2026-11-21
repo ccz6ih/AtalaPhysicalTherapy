@@ -7,6 +7,8 @@ import { ResourcesStrip } from "@/components/ResourcesStrip";
 import { LeadForm } from "@/components/LeadForm";
 import { JsonLd } from "@/components/JsonLd";
 import { boutiqueApproach, conditionRegions } from "@/content/conditions";
+import { BodyMap } from "@/components/BodyMap";
+import { guides, guidePath } from "@/content/guides";
 import { site } from "@/content/site";
 import { pageMeta } from "@/lib/seo";
 import { ids, webPage } from "@/lib/schema";
@@ -38,7 +40,33 @@ export default function ConditionsPage() {
         </div>
       </PageHero>
 
-      <section className="bg-white py-16 lg:py-24" aria-label="Conditions by body region">
+      <section data-stage="Body map" className="bg-fog-2 py-16 lg:py-24">
+        <div className="wrap">
+          <BodyMap />
+        </div>
+      </section>
+
+      <section data-stage="Guides" className="py-16 lg:py-24" aria-labelledby="guides-h">
+        <div className="wrap">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <h2 id="guides-h" className="display-lg max-w-2xl">In-depth condition guides</h2>
+            <p className="max-w-md text-[1rem]">Plain-language answers on causes, recovery and what treatment looks like — based on published physical therapy guidelines.</p>
+          </div>
+          <ul className="mt-10 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+            {guides.map((g) => (
+              <li key={g.slug}>
+                <Link href={guidePath(g.slug)} className="group flex h-full flex-col bg-white p-6 transition-colors hover:bg-marine">
+                  <span className="ui text-[1.2rem] font-[700] text-marine group-hover:text-white">{g.name}</span>
+                  <span className="mt-2 flex-1 text-[0.95rem] text-body group-hover:text-white/75">{g.answer.split(". ")[0]}.</span>
+                  <span className="ui mt-4 text-[0.88rem] font-[650] text-oxblood group-hover:text-white">Read the guide</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section data-stage="Full list" className="bg-white py-16 lg:py-24" aria-label="Conditions by body region">
         <div className="wrap grid gap-10 lg:grid-cols-[14rem_1fr] lg:gap-16">
           <nav aria-label="Body regions" className="lg:sticky lg:top-28 lg:self-start">
             <ul className="ui flex gap-2 overflow-x-auto pb-2 lg:flex-col lg:gap-1 lg:overflow-visible">
@@ -88,7 +116,7 @@ export default function ConditionsPage() {
         </div>
       </section>
 
-      <section className="py-20 lg:py-28" aria-labelledby="why-h">
+      <section data-stage="Why Atala" className="py-20 lg:py-28" aria-labelledby="why-h">
         <div className="wrap">
           <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-end">
             <div>

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import posts from "@/content/posts.json";
 import { services } from "@/content/services";
+import { guides, guidePath } from "@/content/guides";
 import { site } from "@/content/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -23,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...pages.map(([p, priority]) => ({ url: `${site.url}${p}`, priority, changeFrequency: "monthly" as const })),
     ...services.map((s) => ({ url: `${site.url}${s.path}`, priority: 0.8, changeFrequency: "monthly" as const, images: [`${site.url}${s.hero.src}`] })),
+    ...guides.map((g) => ({ url: `${site.url}${guidePath(g.slug)}`, lastModified: g.updated, priority: 0.8, changeFrequency: "monthly" as const, images: [`${site.url}${g.image.src}`] })),
     ...posts.map((p) => ({ url: `${site.url}/${p.slug}/`, lastModified: p.modified, priority: 0.6, changeFrequency: "yearly" as const, images: p.image ? [`${site.url}${p.image}`] : undefined })),
   ];
 }

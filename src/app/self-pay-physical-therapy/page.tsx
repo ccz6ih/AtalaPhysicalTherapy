@@ -60,7 +60,7 @@ export default function SelfPay() {
           ],
         }}
       />
-      <section className="contours bg-[position:right_-200px_top_-60px] pt-8 lg:pt-12">
+      <section data-stage="Basecamp" className="contours bg-[position:right_-200px_top_-60px] pt-8 lg:pt-12">
         <div className="wrap">
           <Breadcrumbs items={[{ name: "Self-Pay Physical Therapy", href: "/self-pay-physical-therapy/" }]} />
           <div className="mt-8 grid items-center gap-12 lg:grid-cols-[1.3fr_1fr]">
@@ -91,7 +91,7 @@ export default function SelfPay() {
         </div>
       </section>
 
-      <section className="on-dark bg-marine pb-24 pt-8 text-white/80" aria-labelledby="why-h">
+      <section data-stage="Why pay direct" className="on-dark bg-marine pb-24 pt-8 text-white/80" aria-labelledby="why-h">
         <div className="wrap">
           <h2 id="why-h" className="display-lg max-w-3xl !text-white">Why patients choose to pay directly</h2>
           <dl className="mt-12 grid gap-px overflow-hidden rounded-xl border border-white/15 bg-white/15 md:grid-cols-2">
@@ -105,7 +105,7 @@ export default function SelfPay() {
         </div>
       </section>
 
-      <section id="rates" className="bg-white py-20 lg:py-28" aria-labelledby="rates-h">
+      <section id="rates" data-stage="Pricing" className="bg-white py-20 lg:py-28" aria-labelledby="rates-h">
         <div className="wrap">
           <div className="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end">
             <h2 id="rates-h" className="display-lg">Simple, upfront pricing</h2>
@@ -131,7 +131,7 @@ export default function SelfPay() {
         </div>
       </section>
 
-      <section className="py-20 lg:py-28" aria-labelledby="how-h">
+      <section data-stage="How it works" className="py-20 lg:py-28" aria-labelledby="how-h">
         <div className="wrap grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
             <h2 id="how-h" className="display-lg">How it works</h2>
@@ -151,7 +151,7 @@ export default function SelfPay() {
         </div>
       </section>
 
-      <section className="bg-white py-20 lg:py-28" aria-labelledby="faq-h">
+      <section data-stage="Questions" className="bg-white py-20 lg:py-28" aria-labelledby="faq-h">
         <div className="wrap grid gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <div>
             <h2 id="faq-h" className="display-lg">Questions about self-pay</h2>

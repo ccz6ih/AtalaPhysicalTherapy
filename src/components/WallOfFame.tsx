@@ -5,7 +5,7 @@ import { ReviewRail } from "./ReviewRail";
 /** Patients back at their peak — photos from the old homepage "summit" cards. */
 export function WallOfFame({ heading = "Back at their peak", intro = "Ironman finishes, mud runs, graduation stages and Harley rides. A few of the patients who climbed back with us." }: { heading?: string; intro?: string }) {
   return (
-    <section data-section="wall-of-fame" className="bg-white py-20 lg:py-24" aria-labelledby="wall-h">
+    <section data-stage="Back at their peak" data-section="wall-of-fame" className="bg-white py-20 lg:py-24" aria-labelledby="wall-h">
       <div className="wrap">
         <div className="max-w-2xl">
           <h2 id="wall-h" className="display-lg">{heading}</h2>

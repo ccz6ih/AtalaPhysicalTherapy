@@ -5,7 +5,7 @@ import { Pic } from "./Pic";
 export function ResourcesStrip({ exclude, heading = "Resources" }: { exclude?: string; heading?: string }) {
   const list = posts.filter((p) => p.slug !== exclude).slice(0, 3);
   return (
-    <section data-section="resources" className="py-20 lg:py-24" aria-labelledby="res-h">
+    <section data-stage="Learn more" data-section="resources" className="py-20 lg:py-24" aria-labelledby="res-h">
       <div className="wrap">
         <div className="flex items-end justify-between gap-6">
           <h2 id="res-h" className="display-lg">{heading}</h2>

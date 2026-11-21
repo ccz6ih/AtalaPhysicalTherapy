@@ -77,3 +77,17 @@ Carried over from WordPress: GTM `GTM-MJR3WK7S` and `GTM-T6RNMD9F` (Elementor sn
 1. Import the GitHub repo in Vercel (framework auto-detected), add env vars, deploy.
 2. Add `atalaphysicaltherapy.com` + `www` in Vercel → Domains, then update DNS (A `76.76.21.21` for apex, CNAME `cname.vercel-dns.com` for www — use the values Vercel shows). **Keep the MX records pointing at SiteGround** so the office mailbox and SMTP keep working.
 3. After DNS propagates: submit `https://atalaphysicaltherapy.com/sitemap.xml` in Search Console, spot-check old URLs, test a form.
+
+## Condition guides (traffic pages)
+
+`src/content/guides.ts` holds the in-depth guides served at `/conditions-we-treat/<slug>/` (sciatica, low back pain, herniated disc, neck pain, rotator cuff, frozen shoulder, ACL rehab, knee and hip replacement rehab, runner's knee, plantar fasciitis, tennis elbow). Each has an answer-first summary, symptoms, causes, how PT helps, a phased plan, self-care, red flags, FAQs (FAQPage schema) and published guideline sources.
+
+- **Have a licensed therapist read each guide**, then set `reviewedBy: "Terri Brusseau Kraus, PT, MPT"` on it — the page shows "Clinically reviewed by…" and the schema gets `reviewedBy`. This matters for Google's health-content quality signals.
+- To add a guide: copy an object in `guides.ts`, then add a route folder `src/app/conditions-we-treat/<slug>/page.tsx` (copy any existing one). The menu, body map, hub grid and sitemap pick it up automatically.
+
+## Signature interactions
+
+- **Body map** (`BodyMap.tsx`): tap a region to see conditions, guides, a typical plan, who you'll see and a booking CTA. Used on the homepage and `/conditions-we-treat/#body-map`.
+- **Altitude rail** (`AltitudeRail.tsx`): the elevation line pinned to the right edge on large screens; waypoints come from `data-stage` attributes on sections (falls back to `h2`s). Small screens get a thin progress bar.
+- **Zoom-out menu** (`SiteMenu.tsx`, `Shell.tsx`, `MenuContext.tsx`): the page zooms out to reveal a wayfinding menu ("Where are you starting?"); choosing a link zooms back in, then navigates.
+- **Page transitions** (`app/template.tsx` + `globals.css`): React `<ViewTransition>`; the new page rises behind a mountain-ridge edge. All motion is disabled under `prefers-reduced-motion`.

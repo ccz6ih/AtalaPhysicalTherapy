@@ -254,3 +254,61 @@
 
 /* Hide visually but keep for AT */
 .sr-only-focusable:not(:focus) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ── Zoom-out menu ─────────────────────────────────────────────── */
+#shell {
+  transition: transform 0.75s cubic-bezier(0.76, 0, 0.18, 1), border-radius 0.75s cubic-bezier(0.76, 0, 0.18, 1), box-shadow 0.75s;
+}
+#shell[data-open] {
+  transform: translateX(min(54vw, 860px)) scale(0.72);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 40px 120px -30px rgba(0, 0, 0, 0.6);
+}
+@media (max-width: 767px) {
+  #shell[data-open] { transform: translateX(84vw) scale(0.86); }
+}
+html.menu-open { overflow: hidden; }
+html.menu-open .altitude-rail { opacity: 0; pointer-events: none; }
+.altitude-rail { transition: opacity 0.3s; }
+html.menu-open [data-section="mobile-bar"] { transform: translateY(110%); }
+[data-section="mobile-bar"] { transition: transform 0.4s; }
+#site-menu { visibility: hidden; transition: visibility 0s linear 0.75s; }
+#site-menu[data-open] { visibility: visible; transition: none; }
+#site-menu .menu-item { opacity: 0; transform: translateX(-24px); transition: opacity 0.35s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+#site-menu[data-open] .menu-item { opacity: 1; transform: none; transition-delay: calc(0.18s + var(--i, 0) * 0.045s); }
+@media (prefers-reduced-motion: reduce) {
+  #shell, #site-menu .menu-item { transition: none !important; }
+}
+
+/* ── Page transitions: the new page rises behind a ridge line ─────── */
+::view-transition-old(root),
+::view-transition-new(root) { animation: none; }
+::view-transition-group(site-header) { animation: none; z-index: 10; }
+::view-transition-old(site-header),
+::view-transition-new(site-header) { animation: none; }
+::view-transition-old(.climb-out) {
+  animation: climb-out 0.6s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+::view-transition-new(.climb-in) {
+  animation: climb-in 0.75s cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+@keyframes climb-out {
+  to { transform: translateY(-4vh) scale(0.97); opacity: 0.35; filter: saturate(0.6); }
+}
+@keyframes climb-in {
+  from {
+    clip-path: polygon(0 110vh, 12% 110vh, 26% 110vh, 38% 110vh, 52% 110vh, 66% 110vh, 78% 110vh, 90% 110vh, 100% 110vh, 100% 100%, 0 100%);
+  }
+  45% {
+    clip-path: polygon(0 74vh, 12% 64vh, 26% 69vh, 38% 52vh, 52% 58vh, 66% 36vh, 78% 47vh, 90% 41vh, 100% 50vh, 100% 100%, 0 100%);
+  }
+  to {
+    clip-path: polygon(0 -30vh, 12% -30vh, 26% -30vh, 38% -30vh, 52% -30vh, 66% -30vh, 78% -30vh, 90% -30vh, 100% -30vh, 100% 100%, 0 100%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+}

@@ -11,6 +11,8 @@ const patientLinks = [
   { label: "Request an appointment", href: "/schedule-an-appointment/" },
   { label: "Find your plan (quiz)", href: "/personal-pt-quiz/" },
   { label: "Conditions we treat", href: "/conditions-we-treat/" },
+  { label: "Sciatica", href: "/conditions-we-treat/sciatica/" },
+  { label: "Knee replacement rehab", href: "/conditions-we-treat/knee-replacement-rehab/" },
   { label: "Our team", href: "/our-team/" },
   { label: "Reviews", href: "/reviews/" },
   { label: "Resources", href: "/resources/" },
