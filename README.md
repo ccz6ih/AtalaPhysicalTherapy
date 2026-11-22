@@ -113,3 +113,14 @@ Every page has a branded 1200×630 share card: logo, page title and the ridge li
 ## Condition guides, batch 2
 
 Ankle sprain, Achilles tendinopathy, meniscus tear, carpal tunnel syndrome, spinal stenosis and shoulder impingement live in `src/content/guides-more.ts` and are merged into `guides` automatically (body map, menu, hub and sitemap pick them up). As with batch 1, set `reviewedBy` once Terri has read them.
+
+## Lead storage and the leads page
+
+Every form submission is saved to Postgres (in addition to the email), and the clinic can work the list at **/leads/** (password protected, hidden from search engines).
+
+Setup in Vercel:
+1. **Storage → Create Database → Neon (Postgres)**, connect it to this project. That adds `DATABASE_URL` automatically.
+2. **Settings → Environment Variables:** add `LEADS_PASSWORD` (a long password the clinic will use).
+3. Redeploy. The `leads` table is created automatically on the first submission.
+
+On /leads/: filter by status (new, contacted, booked, not a fit), change status and add notes inline, see monthly totals, and download everything as CSV. If the database is down, the email still goes out; if email fails, the lead is still saved.

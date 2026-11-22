@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
 import { site } from "@/content/site";
+import { leadsDbReady, saveLead } from "@/lib/leads";
 
 /**
  * Lead intake for every form on the site (contact, appointment request, quiz call-back).
@@ -10,6 +11,8 @@ import { site } from "@/content/site";
  *   LEAD_TO      — inbox that receives leads (default contact@atalaphysicaltherapy.com)
  *   LEAD_FROM    — From address; must be the SMTP account or an allowed alias
  *   LEAD_WEBHOOK_URL — optional, receives the same JSON payload
+ *   DATABASE_URL — Postgres (Vercel → Storage → Neon). Every lead is saved here and
+ *                  shown on the private /leads/ page (password: LEADS_PASSWORD).
  *
  * Forms intentionally do not collect medical history (PHI). The online intake
  * stays in the clinic's EHR / PDF packet.
@@ -82,6 +85,16 @@ export async function POST(req: Request) {
     .join("")}</table>`;
 
   const tasks: Promise<unknown>[] = [];
+  // The database copy is the record of truth; email and webhook are notifications.
+  let stored = false;
+  if (leadsDbReady()) {
+    try {
+      await saveLead({ form: FORM_NAMES[form], name, email, phone, message, details: Object.fromEntries(details), page });
+      stored = true;
+    } catch (e) {
+      console.error("[lead] database save failed:", e);
+    }
+  }
   const smtpReady = process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS;
   if (smtpReady) {
     const port = Number(process.env.SMTP_PORT || 465);
@@ -111,7 +124,8 @@ export async function POST(req: Request) {
   }
 
   if (tasks.length === 0) {
-    console.warn("[lead] No SMTP or webhook configured. Lead:", payload);
+    if (stored) return Response.json({ ok: true });
+    console.warn("[lead] No database, SMTP or webhook configured. Lead:", payload);
     if (process.env.NODE_ENV === "production" && process.env.VERCEL_ENV === "production") {
       return Response.json({ ok: false, error: `We couldn't send your message. Please call ${site.phone}.` }, { status: 503 });
     }
@@ -121,7 +135,7 @@ export async function POST(req: Request) {
   const results = await Promise.allSettled(tasks);
   const failures = results.filter((r) => r.status === "rejected") as PromiseRejectedResult[];
   failures.forEach((f) => console.error("[lead] delivery failed:", f.reason));
-  if (failures.length === results.length) {
+  if (failures.length === results.length && !stored) {
     return Response.json({ ok: false, error: `We couldn't send your message. Please call ${site.phone}.` }, { status: 502 });
   }
   return Response.json({ ok: true });
