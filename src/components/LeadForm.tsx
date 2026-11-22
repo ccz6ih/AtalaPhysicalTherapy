@@ -179,10 +179,10 @@ export function LeadForm({ variant = "contact", heading, intro, dark = false }: 
 
       <div>
         <label className={label} htmlFor="f-msg">
-          {variant === "appointment" ? "Anything we should know? (optional)" : "How can we help?"}
+          {variant === "appointment" ? "Best times to reach you, or questions (optional)" : "How can we help?"}
         </label>
-        <textarea id="f-msg" name="message" rows={4} required={variant === "contact"} className={field} />
-        <p className={`ui mt-1.5 text-[0.82rem] ${dark ? "text-white/60" : "text-muted"}`}>Please keep medical details brief — we&apos;ll go over your history privately at your visit.</p>
+        <textarea id="f-msg" name="message" rows={4} required={variant === "contact"} aria-describedby="f-msg-note" className={field} />
+        <p id="f-msg-note" className={`ui mt-1.5 text-[0.82rem] ${dark ? "text-white/60" : "text-muted"}`}>Please don&apos;t include medical details or your health history here. Your physical therapist will go over that with you privately at your first visit.</p>
       </div>
 
       {error && (
