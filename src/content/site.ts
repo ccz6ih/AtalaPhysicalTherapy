@@ -16,7 +16,7 @@ export const site = {
   phone: "(760) 727-9100",
   phoneHref: "tel:+17607279100",
   fax: "(760) 727-9122",
-  email: "office@atalaphysicaltherapy.com",
+  email: "contact@atalaphysicaltherapy.com",
 
   address: {
     street: "3222 Grey Hawk Court",

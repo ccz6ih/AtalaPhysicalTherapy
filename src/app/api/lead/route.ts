@@ -7,7 +7,7 @@ import { site } from "@/content/site";
  *
  * Env:
  *   SMTP_HOST, SMTP_PORT (465 or 587), SMTP_USER, SMTP_PASS
- *   LEAD_TO      — inbox that receives leads (default office@atalaphysicaltherapy.com)
+ *   LEAD_TO      — inbox that receives leads (default contact@atalaphysicaltherapy.com)
  *   LEAD_FROM    — From address; must be the SMTP account or an allowed alias
  *   LEAD_WEBHOOK_URL — optional, receives the same JSON payload
  *
