@@ -3,6 +3,7 @@ import { Archivo, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { MenuProvider } from "@/components/MenuContext";
+import { NavProgress } from "@/components/NavProgress";
 import { Shell } from "@/components/Shell";
 import { SiteMenu } from "@/components/SiteMenu";
 import { AltitudeRail } from "@/components/AltitudeRail";
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <GtmNoScript />
         <MenuProvider>
+          <NavProgress />
           <SiteMenu />
           <Shell>
             <Header />

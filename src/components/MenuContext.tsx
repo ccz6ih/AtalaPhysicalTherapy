@@ -21,15 +21,25 @@ export function MenuProvider({ children }: { children: React.ReactNode }) {
 
   const setOpen = useCallback((v: boolean) => setOpenState(v), []);
 
-  /** Zoom the page back in, then navigate — the page transition takes over from there. */
+  /**
+   * Navigate straight away and keep the menu open until the new page has
+   * rendered; the pathname change closes it, so the page that zooms back in
+   * is the one you chose.
+   */
   const navigate = useCallback(
     (href: string) => {
       if (href.startsWith("http")) {
         window.open(href, "_blank", "noopener");
         return;
       }
-      setOpenState(false);
-      window.setTimeout(() => router.push(href), reduced() ? 0 : 460);
+      const target = new URL(href, window.location.href);
+      if (target.pathname === window.location.pathname) {
+        setOpenState(false);
+        if (target.hash) window.setTimeout(() => document.querySelector(target.hash)?.scrollIntoView({ behavior: reduced() ? "auto" : "smooth" }), 450);
+        return;
+      }
+      window.dispatchEvent(new Event("nav-start"));
+      router.push(href);
     },
     [router],
   );

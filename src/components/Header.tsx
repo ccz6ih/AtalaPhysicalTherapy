@@ -32,7 +32,6 @@ export function Header() {
   return (
     <header
       data-section="header"
-      style={{ viewTransitionName: "site-header" }}
       className={`sticky top-0 z-50 transition-[background-color,box-shadow] duration-300 ${scrolled ? "bg-fog/95 shadow-[0_1px_0_var(--color-line)] backdrop-blur-md" : "bg-fog"}`}
     >
       <a href="#main" className="sr-only-focusable ui absolute left-4 top-3 z-[60] rounded bg-marine px-4 py-2 text-white">
